@@ -5,8 +5,8 @@ EXIF GPS data extraction.
 # Setup
 
     $ gem install specific_install
-    $ gem specific_install git@github.com:vaberay/exif-gps.git
-
+    $ gem specific_install https://github.com/emilioSavignone/image_gps
+    
     Make sure you have installed `libexif`: 
 
 # Usage
