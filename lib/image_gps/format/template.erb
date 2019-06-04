@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GPS Image Metadata</title>
+  </head>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+    }
+  </style>
+  <body>
+    <table>
+      <caption>GPS data for images</caption>
+      <thead>
+        <tr>
+          <% headers.each do |header| %>
+            <th><%= header %></th>
+          <% end %>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <% images.each do |image| %>
+          <tr>
+            <td><%= image.name %></td>
+            <td><%= image.latitude %></td>
+            <td><%= image.longitude %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </body>
+</html>

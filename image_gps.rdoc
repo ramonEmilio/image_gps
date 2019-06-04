@@ -1,0 +1,5 @@
+= image_gps
+
+Generate this with
+    image_gps _doc
+After you have described your command line interface

@@ -1,0 +1,73 @@
+#!/usr/bin/env ruby
+require 'gli'
+require 'image_gps'
+begin # XXX: Remove this begin/rescue before distributing your app
+rescue LoadError
+  STDERR.puts "In development, you need to use `bundle exec bin/image_gps` to run your app"
+  STDERR.puts "At install-time, RubyGems will make sure lib, etc. are in the load path"
+  STDERR.puts "Feel free to remove this message from bin/image_gps now"
+  exit 64
+end
+
+class App
+  extend GLI::App
+
+  program_desc 'Extract latitude and logitude from image metadata.'
+
+  version ImageGps::VERSION
+
+  subcommand_option_handling :normal
+  arguments :strict
+
+  desc 'output format'
+  default_value 'csv'
+  arg_name 'format'
+  flag [:f,:format], must_match: ['csv', 'html']
+
+  desc 'Lookup directory'
+  default_value './'
+  arg_name 'directory'
+  flag [:d,:directory]
+
+  desc 'Directory where output will be saved'
+  default_value './'
+  arg_name 'output'
+  flag [:o,:output]
+
+  desc 'Fetch image gps data for every image in directory(recursively)'
+  command :extract do |c|
+    c.action do |global_options, options, args|
+      directory = ImageGps::Directory.new(path: global_options[:directory])
+
+      output = ImageGps::Output.new(
+        format_name: global_options[:format],
+        directory: global_options[:output]
+      )
+
+      output.save(directory.images)
+    end
+  end
+
+  pre do |global,command,options,args|
+    # Pre logic here
+    # Return true to proceed; false to abort and not call the
+    # chosen command
+    # Use skips_pre before a command to skip this block
+    # on that command only
+    true
+  end
+
+  post do |global,command,options,args|
+    # Post logic here
+    # Use skips_post before a command to skip this
+    # block on that command only
+  end
+
+  on_error do |exception|
+    # Error logic here
+    # return false to skip default error handling
+    true
+  end
+end
+
+exit App.run(ARGV)
