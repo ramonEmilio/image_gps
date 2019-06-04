@@ -15,7 +15,10 @@ spec = Gem::Specification.new do |s|
     'lib/image_gps/format/csv.rb',
     'lib/image_gps/format/html.rb',
     'lib/image_gps/format/template.erb',
-    'lib/image_gps/format/base.rb'
+    'lib/image_gps/format/base.rb',
+    'lib/image_gps/directory.rb',
+    'lib/image_gps/image.rb',
+    'lib/image_gps/output.rb'
   ]
   s.require_paths << 'lib'
   s.extra_rdoc_files = ['README.rdoc','image_gps.rdoc']
