@@ -27,8 +27,6 @@ EXIF GPS data extraction.
 
     $ image_gps -f html extract
 
-    $ extract-exif --output=./result.html gps-location
-
   manual
 
     $ image_gps help
